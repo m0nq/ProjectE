@@ -54,10 +54,21 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
   public int countEntriesNonRecursive(T target) {
     // this initial code is meant as a suggestion to get your started- use it or delete it!
     int count = 0;
-    BinaryNodeInterface<T> currentNode = getRootNode();
+    BinaryNodeInterface currentNode = getRootNode();
+    Stack<BinaryNodeInterface> nodeStack = new Stack<>();
 
     // consider a loop!
-
+    while (currentNode != null || !nodeStack.empty()) {
+      while (currentNode != null) {
+        nodeStack.push(currentNode);
+        currentNode = currentNode.getLeftChild();
+      }
+      currentNode = nodeStack.pop();
+      if (currentNode.getData().equals(target)) {
+        count += 1;
+      }
+      currentNode = currentNode.getRightChild();
+    }
     return count;
   }
 
@@ -110,6 +121,4 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
       return rootNode.getRightChild().getHeight();
     }
   }
-
-
 }
