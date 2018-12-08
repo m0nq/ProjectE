@@ -73,35 +73,57 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
     BinaryNodeInterface<T> rootNode = getRootNode();
 
     if (target != null) {
-      count += countGreaterHelper(rootNode, target);
+      count += countGreaterRecursiveHelper(rootNode, target);
     }
     return count;
   }
 
-  private int countGreaterHelper(BinaryNodeInterface<T> currentNode, T target) {
+  private int countGreaterRecursiveHelper(BinaryNodeInterface<T> currentNode, T target) {
     if (currentNode == null) {
       return 0;
     } else if (currentNode.getData().compareTo(target) > 0) {
-      return 1 + countGreaterHelper(currentNode.getLeftChild(), target) + countGreaterHelper(currentNode.getRightChild(), target);
+      return 1 + countGreaterRecursiveHelper(currentNode.getLeftChild(), target) + countGreaterRecursiveHelper(currentNode.getRightChild(), target);
     }
-    return countGreaterHelper(currentNode.getLeftChild(), target) + countGreaterHelper(currentNode.getRightChild(), target);
+    return countGreaterRecursiveHelper(currentNode.getLeftChild(), target) + countGreaterRecursiveHelper(currentNode.getRightChild(), target);
   }
 
-  // YOUR CODE HERE! MUST BE USE A STACK!!
   public int countGreaterWithStack(T target) {
-    // this initial code is meant as a suggestion to get your started- use it or delete it!
     int count = 0;
-    BinaryNodeInterface<T> rootNode = getRootNode();
+    BinaryNodeInterface<T> currentNode = getRootNode();
     Stack<BinaryNodeInterface<T>> nodeStack = new Stack<BinaryNodeInterface<T>>();
-    nodeStack.push(rootNode);
 
-    // consider a loop based on the stack!
+    while (currentNode != null || !nodeStack.empty()) {
+      while (currentNode != null) {
+        nodeStack.push(currentNode);
+        currentNode = currentNode.getLeftChild();
+      }
+      currentNode = nodeStack.pop();
+      if (currentNode.getData().compareTo(target) > 0) {
+        count += 1;
+      }
+      currentNode = currentNode.getRightChild();
+    }
     return count;
   }
 
-  // YOUR EXTRA CREDIT CODE HERE! THIS METHOD MUST BE O(n).
   public int countUniqueValues() {
-    return 0;
+    BinaryNodeInterface<T> currentNode = getRootNode();
+    Stack<BinaryNodeInterface<T>> nodeStack = new Stack<>();
+    ArrayList<T> dataList = new ArrayList<>();
+
+    while (currentNode != null || !nodeStack.empty()) {
+      while (currentNode != null) {
+        nodeStack.push(currentNode);
+        currentNode = currentNode.getLeftChild();
+      }
+      currentNode = nodeStack.pop();
+      T data = currentNode.getData();
+      if (!dataList.contains(data)) {
+        dataList.add(data);
+      }
+      currentNode = currentNode.getRightChild();
+    }
+    return dataList.size();
   }
 
   public int getLeftHeight() {
