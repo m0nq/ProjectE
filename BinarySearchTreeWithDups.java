@@ -22,7 +22,6 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
     return null;
   }
 
-  // YOUR CODE HERE! THIS METHOD CANNOT BE RECURSIVE.
   private void addEntryHelperNonRecursive(T newEntry) {
     BinaryNodeInterface<T> currentNode = getRootNode();
     assert currentNode != null;
@@ -50,14 +49,11 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
     }
   }
 
-  // YOUR CODE HERE! THIS METHOD CANNOT BE RECURSIVE.
   public int countEntriesNonRecursive(T target) {
-    // this initial code is meant as a suggestion to get your started- use it or delete it!
     int count = 0;
     BinaryNodeInterface currentNode = getRootNode();
     Stack<BinaryNodeInterface> nodeStack = new Stack<>();
 
-    // consider a loop!
     while (currentNode != null || !nodeStack.empty()) {
       while (currentNode != null) {
         nodeStack.push(currentNode);
@@ -72,15 +68,23 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
     return count;
   }
 
-  // YOUR CODE HERE! MUST BE RECURSIVE!! YOU CAN ALSO CREATE A PRIVATE HELPER.
   public int countGreaterRecursive(T target) {
-    // this initial code is meant as a suggestion to get your started- use it or delete it!
     int count = 0;
     BinaryNodeInterface<T> rootNode = getRootNode();
 
-    // consider a helper method!
-
+    if (target != null) {
+      count += countGreaterHelper(rootNode, target);
+    }
     return count;
+  }
+
+  private int countGreaterHelper(BinaryNodeInterface<T> currentNode, T target) {
+    if (currentNode == null) {
+      return 0;
+    } else if (currentNode.getData().compareTo(target) > 0) {
+      return 1 + countGreaterHelper(currentNode.getLeftChild(), target) + countGreaterHelper(currentNode.getRightChild(), target);
+    }
+    return countGreaterHelper(currentNode.getLeftChild(), target) + countGreaterHelper(currentNode.getRightChild(), target);
   }
 
   // YOUR CODE HERE! MUST BE USE A STACK!!
