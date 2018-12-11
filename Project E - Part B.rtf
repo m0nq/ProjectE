@@ -1,0 +1,22 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf100
+{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs28 \cf0 \ul \ulc0 Part B Questions:
+\f1\b0 \ulnone \
+\
+
+\fs24 1. I\'92ve inferred that Section B had the fastest processing time. As not only was the \'91Time required to build tree\'92 33 milliseconds, compared to Section A and B which were 855 and 18713 milliseconds respectively, Section C had a stack overflow finding the total number of nodes, and Section A has a delta in between left and right height of 4784 (= 4787 - 3). Whereas the height delta of Section B\'92s left and right sub trees is only 3 (= 158 - 152) making Section B\'92s tree more balanced, and manageable for faster processing.\
+\
+2. The only marginal difference between these 2 trees can be observed in the facts that Section C\'92s tree had a stack overflow at runtime for counting the number of nodes, counting the number of nodes in left subtree, and counting the height of the left subtree. There is also the difference in the \'91time required to build tree\'92 of Section A being 855 milliseconds, and the \'91time required to build tree\'92 of Section C coming out to be 18713 milliseconds. Therefore, the tree of Section A must be more efficient compared to the tree of Section C since its tree was incapable of completing proper measurements for processing.\
+\
+The tree built from the ascending list is faster because it\'92s slightly more balanced in it\'92s construction compared to a tree built in sorted descending\
+\
+3. Not quite sure which other tree you\'92re asking to compare to the tree built in Section B to, but assuming the tree built from the shuffled list is faster compared to the tree built in Section A (sorted list) since it has a more balanced structure; having a height delta between it\'92s left and right subtrees of 3.\
+\
+The time complexity of searching a tree is generally considered to be O(h) = O(n), where h = height of the tree and n = the number of nodes the tree has. Given the more balanced structure of Section B\'92s tree, the average case for it would be \uc0\u920 (log n) (Theta of log n), whereas the average case of Section A\'92s tree would be \u920 (n) (Theta of n) since it\'92s built in a predominantly linked list fashion.\
+\
+4. The structure of how a tree is built affects the efficiency of utilizing the tree. If a tree has a more linear structure where it\'92s count of nodes is equal to it\'92s height, it is an inefficient tree. However, if the delta of the heights of the left subtree of a tree to it\'92s right subtree is closest to 1, 0, or -1, it\'92s a more efficient tree to utilize for performing actions such as searching.}

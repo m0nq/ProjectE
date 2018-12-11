@@ -9,13 +9,13 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 
   public BinarySearchTreeWithDups(T rootEntry) {
     super(rootEntry);
-    setRootNode(new BinaryNode<T>(rootEntry));
+    setRootNode(new BinaryNode<>(rootEntry));
   }
 
   @Override
   public T add(T newEntry) {
     if (newEntry != null) {
-      if (this.isEmpty()) setRootNode(new BinaryNode<T>(newEntry));
+      if (this.isEmpty()) setRootNode(new BinaryNode<>(newEntry));
       else addEntryHelperNonRecursive(newEntry);
       return newEntry;
     }
@@ -36,14 +36,14 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
           currentNode = currentNode.getLeftChild();
         else {
           found = true;
-          currentNode.setLeftChild(new BinaryNode<T>(newEntry));
+          currentNode.setLeftChild(new BinaryNode<>(newEntry));
         } // end if
       } else {
         if (currentNode.hasRightChild()) {
           currentNode = currentNode.getRightChild();
         } else {
           found = true;
-          currentNode.setRightChild(new BinaryNode<T>(newEntry));
+          currentNode.setRightChild(new BinaryNode<>(newEntry));
         }
       }
     }
